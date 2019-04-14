@@ -17,7 +17,7 @@ export default class Chat extends Component {
         </div>
         <div class="col-md-4">
           <div class="well">
-            <h5>Online Users</h5>
+            <h4>Online Users</h4>
             <ul class="list-group" id="users"></ul>
           </div>
         </div>

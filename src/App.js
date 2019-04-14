@@ -8,6 +8,7 @@ import Home from './components/home';
 import Chat from './components/chat';
 import AdminLogin from './components/adminlogin';
 import Admin from './components/admin';
+import Footer from './components/footer';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route path='/adminhome' exact component={Admin} />
           </Router>
         </div>
+        <Footer />
       </div>
     );
   }
