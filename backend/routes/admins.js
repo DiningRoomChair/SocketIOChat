@@ -4,29 +4,29 @@ const mongoose = require('mongoose');
 const router = express.Router();
 
 router.get('', (req, res, next) => {
-    console.log('ADMINS GET');
-    AdminModel.find(function(err,admins){
-    if(err){
-        res.send(err);
-    }
-    else{
-        res.setHeader('Content-Type',"application/json"); 
-        res.end(JSON.stringify(admins, null, 3));
-    }})
+  console.log('ADMINS GET');
+  AdminModel.find(function(err,admins){
+  if(err){
+    res.send(err);
+  }
+  else{
+    res.setHeader('Content-Type',"application/json"); 
+    res.end(JSON.stringify(admins, null, 3));
+  }})
 });
 
 router.post('', (req, res, next) => {
-    console.log('ADMINS POST');
-    let admin = req.body;
-    if(!admin.username || !admin.password){
-        res.status(400);
-        console.log('Bad Data for New Event  INSERT:');
-    }
-    else{
-        AdminModel.create(admin).then(admin => {
-            res.status(200).json(admin);
-        });
-    }
+  console.log('ADMINS POST');
+  let admin = req.body;
+  if(!admin.username || !admin.password){
+    res.status(400);
+    console.log('Bad Data for New Event  INSERT:');
+  }
+  else{
+    AdminModel.create(admin).then(admin => {
+      res.status(200).json(admin);
+    });
+  }
 });
 
 module.exports = router;

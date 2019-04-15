@@ -1,35 +1,45 @@
 import React, { Component } from 'react'
 import Events from './events';
+import Messages from './messages';
+import Rooms from './rooms';
 
 export default class Admin extends Component {
 
   constructor(props) {
     super(props);
-    this.showEvents = this.showEvents.bind(this);
-    this.showMessages = this.showMessages.bind(this);
-    this.showRooms = this.showRooms.bind(this);
+    this.showEventsClick = this.showEventsClick.bind(this);
+    this.showMessagesClick = this.showMessagesClick.bind(this);
+    this.showRoomsClick = this.showRoomsClick.bind(this);
   }
 
   state = {
     subject: ""
   }
 
-  showEvents(){
+  showEventsClick(){
     this.setState({subject: "events"});
   }
-  showMessages(){
+  showMessagesClick(){
     this.setState({subject: "messages"});
   }
-  showRooms(){
+  showRoomsClick(){
     this.setState({subject: "rooms"});
   }
 
   render() {
     let table;
-
     switch(this.state.subject){
+      case "events":
+        table = <Events />
+        break;
+      case "messages":
+        table = <Messages />
+        break;
+      case "rooms":
+        table = <Rooms />
+        break;
       default:
-        table = <Events />;
+        table = <div></div>;
     }
 
     return (
@@ -38,13 +48,19 @@ export default class Admin extends Component {
         <nav>
           <ul className="nav nav-tabs nav-justified">
             <li className="nav-item">
-                <button className="nav-link" >Event History</button>
+                <button className="nav-link" onClick={this.showEventsClick}>
+                  Event History
+                </button>
             </li>
             <li className="nav-item">
-                <button className="nav-link" >Chat History</button>
+                <button className="nav-link" onClick={this.showMessagesClick}>
+                  Chat History
+                </button>
             </li>
             <li className="nav-item">
-                <button className="nav-link" >Rooms</button>
+                <button className="nav-link" onClick={this.showRoomsClick}>
+                  Rooms
+                </button>
             </li>
           </ul>
         </nav>

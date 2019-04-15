@@ -34,8 +34,8 @@ const roomRoutes = require("./routes/rooms");
 
 console.log('Attempting to connect to mongoose');
 
-app.use("/api/eventlog", eventRoutes);
-app.use("/api/history", messageRoutes);
+app.use("/api/events", eventRoutes);
+app.use("/api/messages", messageRoutes);
 app.use("/api/admins", adminRoutes);
 app.use("/api/rooms", roomRoutes);
 //the assignment wants me to use a different route name to get individual chat history
