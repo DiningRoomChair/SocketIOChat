@@ -18,9 +18,9 @@ router.get('', (req, res, next) => {
 router.post('', (req, res, next) => {
     console.log('ROOMS POST');
     let room = req.body;
-    if(!room.username || !room.password){
+    if(!room.name || !room.status){
         res.status(400);
-        console.log('Bad Data for New Event  INSERT:');
+        console.log('ERROR ADDING ROOM');
     }
     else{
         RoomModel.create(room).then(room => {

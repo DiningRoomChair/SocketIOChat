@@ -5,7 +5,6 @@ export default class Rooms extends Component {
 
   state = {
       rooms: [],
-      roomToCreate: {}
   }
 
   componentWillMount = () => {
@@ -22,12 +21,26 @@ export default class Rooms extends Component {
         <td>{room._id}</td>
         <td>{room.name}</td>
         <td>{room.status}</td>
+        <td><button type="submit" class="btn btn-primary">EDIT</button></td>
       </tr> 
     )
     return(rooms)
   }
-  createRoom = () => {
+  createRoom = (submit) => {
+    submit.preventDefault();
+    let roomName = document.getElementById('name').value;
+    let roomStatus = document.getElementById('status').value.toLowerCase();
 
+    axios.post('http://localhost:4000/api/rooms', {
+      name: roomName,
+      status: roomStatus
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
@@ -39,6 +52,7 @@ export default class Rooms extends Component {
               <th>Room ID</th>
               <th>Name</th>
               <th>Status</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -48,10 +62,10 @@ export default class Rooms extends Component {
         <form>
           <h4>Create a Room</h4>
           <div className="form-group">
-            <label for="name">Name</label>
-            <input type="text" className="form-control" id="name" />
-            <label for="status">Status</label>
-            <select className="form-control" id="status">
+            <label htmlFor="name">Name</label>
+            <input type="text" className="form-control" id="name" required />
+            <label htmlFor="status">Status</label>
+            <select className="form-control" id="status" required>
               <option>Active</option>
               <option>Inactive</option>
             </select>
