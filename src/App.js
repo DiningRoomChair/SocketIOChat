@@ -11,6 +11,8 @@ import Home from './components/home';
 import Chat from './components/chat';
 import AdminLogin from './components/adminlogin';
 import Admin from './components/admin';
+import CreateRoom from './components/createroom';
+import EditRoom from './components/editroom';
 import Footer from './components/footer';
 
 class App extends Component {
@@ -22,10 +24,12 @@ class App extends Component {
         <div className="content">
           <Router>
             <Route path='/' exact component={Home} />
-            <Route path='/admin' exact component={AdminLogin} />
-
             <Route path='/chat' exact component={Chat} />
-            <Route path='/adminhome' exact component={Admin} />
+            
+            <Route path='/admin' exact component={AdminLogin} />
+            <Route path='/admin/home' exact component={Admin} />
+            <Route path='/admin/createroom' exact component={CreateRoom} />
+            <Route path='/admin/editroom/:id' exact component={EditRoom} />
           </Router>
         </div>
         <Footer />

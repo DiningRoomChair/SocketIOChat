@@ -28,5 +28,47 @@ router.post('', (req, res, next) => {
         });
     }
 });
+//single room Update
+router.put('/:id', (req, res, next) => {
+    console.log('UPDATE ROOM');
+    
+    var room = req.body;
+    var updatedRoom = {};
+    
+    if(room.name){
+      updatedRoom.name = room.name;
+    }
+    if(room.status){
+      updatedRoom.status = video.status;
+    }
+    if(!updatedRoom){
+        res.status(400);
+    }
+    else{
+      RoomModel.update({_id: req.params.id}, updVideo, {}, (err, video) => {
+        if(err){
+          res.send(err);
+        }
+        else{
+          res.json(video);
+        }
+      });
+    }
+  });
+
+//Single Video DELETE
+router.delete('/:id', (req, res, next) => {
+    console.log('DELETE ROOM');
+    
+    RoomModel.remove({_id: req.params.id}, (err,video) => {
+      if(err){
+        res.send(err);
+      }
+      else{
+        res.json(video);
+      }
+    });
+  
+  });
 
 module.exports = router;

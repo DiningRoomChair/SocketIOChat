@@ -7,22 +7,22 @@ export default class Admin extends Component {
 
   constructor(props) {
     super(props);
-    this.showEventsClick = this.showEventsClick.bind(this);
-    this.showMessagesClick = this.showMessagesClick.bind(this);
-    this.showRoomsClick = this.showRoomsClick.bind(this);
+    this.showEvents = this.showEvents.bind(this);
+    this.showMessages = this.showMessages.bind(this);
+    this.showRooms = this.showRooms.bind(this);
   }
 
   state = {
     subject: ""
   }
 
-  showEventsClick(){
+  showEvents(){
     this.setState({subject: "events"});
   }
-  showMessagesClick(){
+  showMessages(){
     this.setState({subject: "messages"});
   }
-  showRoomsClick(){
+  showRooms(){
     this.setState({subject: "rooms"});
   }
 
@@ -43,22 +43,22 @@ export default class Admin extends Component {
     }
 
     return (
-      <div>
+      <div id="admincontent">
         <h2>Administrative Functions</h2>
         <nav>
           <ul className="nav nav-tabs nav-justified">
             <li className="nav-item">
-                <button className="nav-link" onClick={this.showEventsClick}>
+                <button className="nav-link" onClick={this.showEvents}>
                   Event History
                 </button>
             </li>
             <li className="nav-item">
-                <button className="nav-link" onClick={this.showMessagesClick}>
+                <button className="nav-link" onClick={this.showMessages}>
                   Chat History
                 </button>
             </li>
             <li className="nav-item">
-                <button className="nav-link" onClick={this.showRoomsClick}>
+                <button className="nav-link" onClick={this.showRooms}>
                   Rooms
                 </button>
             </li>

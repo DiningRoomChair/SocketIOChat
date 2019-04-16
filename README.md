@@ -2,7 +2,11 @@ A chat application using socket.io with the MERN stack
 
 See the hosted implementation here
 
+The admin credentials are:
+    -Username: BlackKnight
+    -Password: OnlyAFleshWound
+
 TODO:
-    -Create and Edit rooms
+    -Edit/Delete rooms
     -Chat functionality
-    -Login functionality
+    -Host it

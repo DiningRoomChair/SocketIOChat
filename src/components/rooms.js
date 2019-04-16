@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from '../../../Hackathon/node_modules/axios';
+import CreateRoom from './createroom';
 
 export default class Rooms extends Component {
 
@@ -21,31 +22,20 @@ export default class Rooms extends Component {
         <td>{room._id}</td>
         <td>{room.name}</td>
         <td>{room.status}</td>
-        <td><button type="submit" class="btn btn-primary">EDIT</button></td>
-      </tr> 
+        <td><a href={"editroom/" + room._id}>
+          EDIT
+        </a></td>
+      </tr>
     )
     return(rooms)
-  }
-  createRoom = (submit) => {
-    submit.preventDefault();
-    let roomName = document.getElementById('name').value;
-    let roomStatus = document.getElementById('status').value.toLowerCase();
-
-    axios.post('http://localhost:4000/api/rooms', {
-      name: roomName,
-      status: roomStatus
-    })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   render() {
     return (
       <div>
+        <a href="createroom" id="createroomlink">
+          CREATE A ROOM
+        </a>
         <table className="table table-bordered">
           <thead>
             <tr>
@@ -59,21 +49,6 @@ export default class Rooms extends Component {
             {this.renderRooms()}
           </tbody>
         </table>
-        <form>
-          <h4>Create a Room</h4>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input type="text" className="form-control" id="name" required />
-            <label htmlFor="status">Status</label>
-            <select className="form-control" id="status" required>
-              <option>Active</option>
-              <option>Inactive</option>
-            </select>
-          </div>
-          <button type="submit" className="btn btn-primary" onClick={this.createRoom}>
-            Create Room
-          </button>
-        </form>
       </div>
     )
   }

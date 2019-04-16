@@ -20,7 +20,7 @@ router.post('', (req, res, next) => {
   let admin = req.body;
   if(!admin.username || !admin.password){
     res.status(400);
-    console.log('Bad Data for New Event  INSERT:');
+    console.log('ERROR ADDING ADMIN');
   }
   else{
     AdminModel.create(admin).then(admin => {
