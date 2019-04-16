@@ -12,10 +12,11 @@ export default class CreateRoom extends Component {
       name: roomName,
       status: roomStatus
     })
-      .then( (response) => {
+      .then(response => {
+        console.log(response);
         window.location.href = "/admin/home";
       })
-      .catch(function (error) {
+      .catch(error => {
         console.log(error);
       });
   }
