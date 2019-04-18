@@ -16,6 +16,12 @@ socket.on("chat", data => {
 
 export default class Home extends Component {
 
+  constructor(props){
+    super(props);
+    this.renderMessageHistory = this.renderMessageHistory.bind(this);
+    this.submitMessage = this.submitMessage.bind(this);
+  }
+
   state = {
     rooms: [],
     messageHistory: []
@@ -29,12 +35,6 @@ export default class Home extends Component {
       .catch(err => console.warn(err));
   }
 
-  renderRoomChoices = () => {
-    let rooms = this.state.rooms.map(room =>
-      <option>{room.name}</option>
-    )
-    return(rooms);
-  }
   submitUser = event => {
     event.preventDefault();
 
@@ -73,10 +73,10 @@ export default class Home extends Component {
         for(let event of data){
           messages.push({username: event.username, message: event.message});
         }
-        console.log(messages);
+        this.setState({messageHistory: messages});
+        console.log(this.state.messageHistory);
       })
       .catch(err => console.warn(err));
-    
   };
   submitMessage = event => {
     event.preventDefault();
@@ -99,12 +99,28 @@ export default class Home extends Component {
       })
       .then(response => {
         console.log(response);
+        let messages = this.state.messageHistory;
+        messages.push({username: username.value, message: message.value});
+        this.setState({messageHistory: messages});
       })
       .catch(function (error) {
         console.log(error);
       });
     message.value = "";
   };
+
+  renderRoomChoices = () => {
+    let rooms = this.state.rooms.map(room =>
+      <option>{room.name}</option>
+    )
+    return(rooms);
+  }
+  renderMessageHistory = () => {
+    let messageHistory = this.state.messageHistory.map(message => 
+      <p>{message.username}: {message.message}</p>
+    );
+    return(messageHistory);
+  }
 
   render() {
     return (
@@ -125,14 +141,8 @@ export default class Home extends Component {
           </form>
         </div>
         <div id="messageArea" className="row">
-            <div className="col-md-4">
-                <div className="well">
-                    <h3>Online Users</h3>
-                    <ul className="list-group" id="users"></ul>
-                </div>
-            </div>
             <div className="col-md-8">
-                <div id="discussion"></div>
+                <div id="discussion">{this.renderMessageHistory()}</div>
                 <div id="feedback"></div>
                 <form id="messageForm">
                     <div className="formGroup">

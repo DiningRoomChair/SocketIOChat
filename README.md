@@ -9,6 +9,5 @@ The admin credentials are:
  - Password: OnlyAFleshWound
 
 TODO:
- - Chat functionality
  - Host it
- - make admin stuff single page
+ - Update chat with each message
