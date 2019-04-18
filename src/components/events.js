@@ -7,7 +7,7 @@ export default class Events extends Component {
       events: []
   }
 
-  componentWillMount = () => {
+componentDidMount = () => {
     axios.get('http://localhost:4000/api/events')
       .then( ({data}) => {
         console.log(data)

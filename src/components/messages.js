@@ -7,7 +7,7 @@ export default class Messages extends Component {
       messages: []
   }
 
-  componentWillMount = () => {
+componentDidMount = () => {
     axios.get('http://localhost:4000/api/messages')
       .then( ({data}) => {
         console.log(data)

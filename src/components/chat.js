@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import openSocket from 'socket.io-client';
+
+const socket = openSocket('http://localhost:4000')
 
 export default class Chat extends Component {
   render() {

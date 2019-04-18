@@ -7,7 +7,7 @@ export default class Home extends Component {
     rooms: []
   }
 
-  componentWillMount = () => {
+componentDidMount = () => {
     axios.get('http://localhost:4000/api/rooms')
       .then( ({data}) => {
         this.setState({rooms: data});

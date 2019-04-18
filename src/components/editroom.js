@@ -9,7 +9,7 @@ export default class EditRoom extends Component {
       roomid: ""
   }
 
-  componentWillMount = () => {
+componentDidMount = () => {
       let urlID = window.location.href.split("/")[5];
       axios.get('http://localhost:4000/api/rooms')
         .then( ({data}) => {
