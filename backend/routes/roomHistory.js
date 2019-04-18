@@ -3,9 +3,7 @@ const MessageModel = require('../models/message');
 const mongoose = require('mongoose');
 const router = express.Router();
 
-//----------------------------------------------------------------
-//----------------------------------------------------------------
-//Get All Events Log
+//Get All Events
 router.get('', (req, res, next) => {
 
     MessageModel.find(function(err,messages){
@@ -19,13 +17,11 @@ router.get('', (req, res, next) => {
     })
   });
 
-//----------------------------------------------------------------
-//----------------------------------------------------------------
 //Sumisson to view individual chat history
 router.post('', (req, res, next) => {
 
-    var room = req.body.rooms_chat_selection ;
-    // console.log('REQ ---------->',req.body.rooms_chat_selection );
+    var room = req.body.room;
+
     MessageModel.find({room},function(err,messages){
         if(err){
           res.send(err);
@@ -37,6 +33,5 @@ router.post('', (req, res, next) => {
       })
 
   });
-  //----------------------------------------------------------------
 
 module.exports = router;

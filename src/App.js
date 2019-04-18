@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Navbar from './components/navbar';
 import Home from './components/home';
-import Chat from './components/chat';
 import AdminLogin from './components/adminlogin';
 import Admin from './components/admin';
 import CreateRoom from './components/createroom';
@@ -24,7 +23,6 @@ class App extends Component {
         <div className="content">
           <Router>
             <Route path='/' exact component={Home} />
-            <Route path='/chat' exact component={Chat} />
             
             <Route path='/admin' exact component={AdminLogin} />
             <Route path='/admin/home' exact component={Admin} />

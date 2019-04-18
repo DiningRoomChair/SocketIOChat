@@ -1,3 +1,4 @@
+var axios = require('axios');
 var express = require('express');
 var backend = require('./backend/app');
 const path = require('path');
@@ -37,6 +38,12 @@ io.set('heartbeat interval', 2000);
 connections = [];
 online_users = [];
 rooms = [];
+axios.get('http://localhost:4000/api/rooms')
+  .then(({data}) => {
+    for(let room in data){
+      rooms.push(data.name);
+    }
+  })
 
 // changed for heroku
 server.listen(4000/*PORT*/);

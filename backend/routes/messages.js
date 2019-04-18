@@ -3,9 +3,7 @@ const MessageModel = require('../models/message');
 const mongoose = require('mongoose');
 const router = express.Router();
 
-//----------------------------------------------------------------
-//----------------------------------------------------------------
-//Get All Events Log
+//Get All Events
 router.get('', (req, res, next) => {
 
     MessageModel.find(function(err,messages){
@@ -19,23 +17,20 @@ router.get('', (req, res, next) => {
     })
   });
 
-//----------------------------------------------------------------
-//----------------------------------------------------------------
-//Insert Event
+//Insert Message
 router.post('', (req, res, next) => {
 
-    console.log('INSERT: an Event occured: ');
+    console.log('MESSAGE POST');
   
-    var message = req.body;//JSON.stringify(req.body, null, 3);
+    var message = req.body;
      console.log(message);
      if(!message.socket_id || !message.username || !message.message || !message.room){
        res.status(400);
-       console.log('Bad Data for New Message  INSERT:'+message);
+       console.log('Bad Data for New Message: ' + message);
      }
      else{
         MessageModel.create(message);
     }
   });
-  //----------------------------------------------------------------
 
 module.exports = router;
