@@ -8,7 +8,3 @@ https://socketiochatfinal.herokuapp.com/
 The admin credentials are:
  - Username: BlackKnight
  - Password: OnlyAFleshWound
-
-TODO:
- - Host it
- - Update chat with each message
