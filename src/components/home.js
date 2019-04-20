@@ -7,13 +7,6 @@ const socket = io.connect('http://localhost:4000');
 var discussion = document.getElementById("discussion");
 var feedback = document.getElementById("feedback");
 
-socket.on("chat", data => {
-  console.log(data.msg+";");
-  feedback.innerHTML = "";
-  discussion.innerHTML += "<p><strong>"+data.user+":</strong> "+data.msg+"</p>";
-  discussion.scrollTop = discussion.scrollHeight;
-});
-
 export default class Home extends Component {
 
   constructor(props){
@@ -84,12 +77,18 @@ export default class Home extends Component {
     let username = document.getElementById("username");
     let room = document.getElementById("room");
     var message = document.getElementById("message");
+    let feedback = document.getElementById("feedback");
+    let discussion = document.getElementById("discussion");
 
     socket.emit("chat", {
         msg: message.value,
         user: username.value,
         room: room.value
     });
+
+    feedback.innerHTML = "";
+    discussion.innerHTML += "<p>" + username.value + ": " + message.value + "</p>";
+    discussion.scrollTop = discussion.scrollHeight;
     //send message to DB
     axios.post('http://localhost:4000/api/messages', {
         socket_id: socket.id,
