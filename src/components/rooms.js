@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from '../../../Hackathon/node_modules/axios';
+import axios from 'axios';
 
 export default class Rooms extends Component {
 
